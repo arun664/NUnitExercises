@@ -1,3 +1,4 @@
+using DotnetSelenium.pages;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Interactions;
@@ -74,5 +75,16 @@ namespace DotnetSelenium
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
             submitButton?.Submit();
         }
+
+        [Test]
+        public void EaWebsiteLoginWithPOM()
+        {
+            IWebDriver driver = new ChromeDriver();
+            driver.Navigate().GoToUrl(@"http://eaapp.somee.com/");
+            LoginPage loginPage = new LoginPage(driver);
+            loginPage.clickLogin();
+            loginPage.loginAdmin("admin", "password");
+        }
+    
     }
 }
